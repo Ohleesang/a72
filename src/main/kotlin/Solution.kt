@@ -36,6 +36,20 @@ class Solution {
         }
         answer = list.toTypedArray()
 */
+        //callings 에서 몇번불렸는지 계산한후,player의 위치를 이동시키자
+
+        var maps = callings.groupBy { it }.mapValues { it.value.size }
+        var list = players.toMutableList()
+        var index = 0
+        var x = 0
+        for(i in maps.keys){
+            index = list.indexOf(i)
+            x = maps.get(i)!!
+            list[index]= list[index-x]
+            list[index-x]=i
+
+        }
+        answer = players
         return answer
 
     }
