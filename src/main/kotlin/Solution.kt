@@ -5,11 +5,13 @@
  */
 /**
  *  Map 이용 시간복잡도 O(n)+O(m)+O(nlogn)
+ *  Array(List) 이용 시간복잡도 O(n^2)
  */
 class Solution {
     fun solution(players: Array<String>, callings: Array<String>): Array<String> {
         var answer: Array<String> = arrayOf<String>()
-/*      맵은 효율적이지 못한것같다..
+/*
+ 맵은 효율적이지 못한것같다..
         var maps = players.associateBy({it},{players.indexOf(it)+1}).toMutableMap()
         //자료구조 맵 으로 저장 맵(이름,순위) x
         var num = 0
@@ -23,7 +25,17 @@ class Solution {
         maps = maps.toSortedMap(compareBy({maps[it]}))// 맵의 값들을 비교하여 정렬
         answer = maps.keys.toTypedArray()//key값(이름)을 따로 저장
 */
+        /* 배열 도 마찬가지
+        var list = players.toMutableList()
 
+        var index = 0
+        for(i in callings.indices){
+            index = list.indexOf(callings[i])
+            list.set(index,list[index-1])
+            list.set(index-1,callings[i])
+        }
+        answer = list.toTypedArray()
+*/
         return answer
 
     }
